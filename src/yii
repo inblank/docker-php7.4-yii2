@@ -1,0 +1,27 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Основной скрипт консольного приложения
+ */
+
+/** Признак выполнения в консоли */
+defined('YII_CONSOLE') || define('YII_CONSOLE', true);
+
+if (getenv('ENVIRONMENT') === 'development') {
+    // работаем в окружении разработки
+    defined('YII_DEBUG') || define('YII_DEBUG', true);
+    defined('YII_ENV') || define('YII_ENV', 'dev');
+} else {
+    // работаем в боевом окружении
+    defined('YII_DEBUG') || define('YII_DEBUG', false);
+    defined('YII_ENV') || define('YII_ENV', 'prod');
+}
+
+require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/vendor/yiisoft/yii2/Yii.php';
+
+try {
+    exit((new yii\console\Application(require __DIR__ . '/app/configs/console.php'))->run());
+} catch (\yii\base\InvalidConfigException $e) {
+    exit('Invalid application config: ' . $e->getMessage() . PHP_EOL);
+}
