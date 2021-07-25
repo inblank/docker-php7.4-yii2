@@ -68,7 +68,7 @@ return [
     ],
     'modules' => [
         'module1' => [
-            'class' => 'k2\module1\Module',
+            'class' => 'inblank\module1\Module',
             'path' => '@runtime/module1/tmp',
             'components' => [
                 'db' => [
